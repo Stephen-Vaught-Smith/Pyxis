@@ -1,0 +1,23 @@
+%Tex file for the award itself
+
+%Preamble
+\documentclass{article}
+
+%packages
+\usepackage{graphicx} %for images (eg the signature of award giver)
+\usepackage[utf8]{inputenc} %in case we need unicode support for names?
+
+%actual document
+
+\begin{document}
+Congratulations,
+%(awardee name)
+You have been awarded
+%(award name)
+On this day of \date{\today{}}
+%(name of award giver)
+\begin{figure}
+\includegraphics[width=200px]{signature.jpg}
+\end{figure}
+
+\end{document}
