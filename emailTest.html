@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Email</title>
+    
+    <link rel="stylesheet" href="3rdParty/css/style.css" type="text/css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="3rdParty/js/jquery-3.2.1.min.js" type="text/javascript"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    
+    <script src="app.js"></script>
+    <script src="controllers/emailController.js"></script>
+    
+</head>
+
+<body ng-app="Recognize">
+
+<div class="container" ng-app="Recognize" ng-controller="emailController">
+   <div class="col-md-6 col-md-offset-3">
+      <!-- PAGE TITLE -->
+      <div class="page-header">
+         <h1><span class="glyphicon glyphicon-tower" style="font-size:20px"></span><span style="font-size:20px; margin-left:10px;">Send a direct e-mail to us</span></h1>
+      </div>
+      <!-- SHOW ERROR/SUCCESS MESSAGES -->
+      <div id="messages" class="well" ng-show="message"></div>
+      <!-- FORM -->
+      <form ng-submit="processForm()">
+         <!-- NAME -->
+         <div id="name-group" class="form-group" ng-class="{ 'has-error' : errorName }">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Batman" ng-model="formData.name">
+            <span class="help-block" ng-show="errorName"></span>
+         </div>
+         <div id="superhero-group" class="form-group" ng-class="{ 'has-error' : errorSuperhero }">
+            <label>Email</label>
+            <input type="email" name="superheroAlias" class="form-control" placeholder="brucewayne@batman.com" ng-model="formData.superheroAlias">
+            <span class="help-block" ng-show="errorSuperhero"></span>
+         </div>
+         <div id="content-group" class="form-group" ng-class="{ 'has-error' : errorContent }">
+            <label>Message</label>
+            <textarea  rows="5" cols="50" class="form-control" placeholder="I am batman" ng-model="formData.content"></textarea>
+            <span class="help-block" ng-show="errorContent"></span>
+         </div>
+         <button type="submit" class="btn btn-success btn-lg btn-block">
+         <span class="glyphicon glyphicon-flash"></span> Submit!
+         </button>
+      </form>
+   </div>
+</div>
+
+
+
+</body>
+</html>
