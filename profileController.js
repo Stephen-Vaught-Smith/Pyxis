@@ -1,55 +1,66 @@
+angular.module('Recognize').service('editAccount', function(){
+
+    var self = this;
+
+    this.userName = '';
+    this.userEmail = '';
+    this.userPhone = '';
+
+    this.getUserName = function() {
+        return self.userName;
+    };
+
+    this.getUserEmail = function() {
+        return self.userEmail;
+    };
+
+    this.getUserPhone = function() {
+        return self.userPhone;
+    };
+
+});
+
+
+
+
+
 angular.module('Recognize').controller('profileController', ['$scope', '$http', function($scope, $http) {
 
-    $scope.awards = [];
-    $scope.tempAwardsData = {};
+    $scope.userName = editAccount.userName;
+    $scope.userEmail = editAccount.userEmail;
+    $scope.userPhone = editAccount.userPhone;
 
+    $scope.edit1 = true;
+    $scope.edit2 = true;
+    $scope.edit3 = true;
 
-    // function to get records from the database
-    $scope.getRecords = function(){
-        $http.get('users.php', {
-            params:{
-                'type':'view'
-            }
-        }).success(function(response){
-            if(response.status == 'OK'){
-                $scope.awards = response.records;
-            }
-        });
+    $scope.editUserName = function() {
+        $scope.edit1 = false;
+        $scope.userName = '';
     };
 
-    // function to edit user data
-    $scope.editUser = function(user){
-        $scope.tempUserData = {
-            id:user.id,
-            name:user.name,
-            email:user.email,
-            phone:user.phone,
-            created:user.created
-        };
-        $scope.index = $scope.users.indexOf(user);
-        $('.formData').slideDown();
+    $scope.editUserEmail = function() {
+        $scope.edit2 = false;
+        $scope.userEmail = '';
     };
 
-
-    // function to update user data
-    $scope.updateUser = function(){
-        $scope.saveUser('edit');
+    $scope.editUserPhone = function() {
+        $scope.edit3 = false;
+        $scope.userPhone = '';
     };
 
-    // function to display success message
-    $scope.messageSuccess = function(msg){
-        $('.alert-success > p').html(msg);
-        $('.alert-success').show();
-        $('.alert-success').delay(5000).slideUp(function(){
-            $('.alert-success > p').html('');
-        });
-    };
+    $scope.$watch('userName', function() {
+        editAccount.userName = $scope.userName;
+    });
+
+    $scope.$watch('userEmail', function() {
+        editAccount.userEmail = $scope.userEmail;
+    });
+
+    $scope.$watch('userPhone', function() {
+        editAccount.userPhone = $scope.userPhone;
+    });
+
+}]);
+
     
-    // function to display error message
-    $scope.messageError = function(msg){
-        $('.alert-danger > p').html(msg);
-        $('.alert-danger').show();
-        $('.alert-danger').delay(5000).slideUp(function(){
-            $('.alert-danger > p').html('');
-        });
-    };
