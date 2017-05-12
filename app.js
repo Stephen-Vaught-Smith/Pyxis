@@ -6,7 +6,7 @@ angular.module('Recognize', ['ngRoute']).config(function ($routeProvider) {
     $routeProvider
 
     .when('/', {
-        templateUrl: 'main.html',
+        templateUrl: 'pages/main.html',
         controller: 'userController'
     })
 
@@ -21,7 +21,7 @@ angular.module('Recognize', ['ngRoute']).config(function ($routeProvider) {
     })
 
     .when('/userProfile', {
-    	templateUrl: 'pages/userProfile.html',
-    	controller: 'profileController'
+        templateUrl: 'pages/userProfile.html',
+        controller: 'profileController'
     })
 });
