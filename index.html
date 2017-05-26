@@ -43,6 +43,23 @@
                     <a href="javascript:void(0);" class="btn btn-success" ng-hide="!tempUserData.id" ng-click="updateUser()">Update User</a>
                 </form>
             </div>
+			<div class="panel-body none formSignatureData">
+                <form class="form" id="userSignatureForm" action="uploadSig.php" name="userSignatureForm" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" readonly class="form-control" name="name" ng-model="tempUserData.name"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Signature</label>  
+						<a href="signature.php?id={{tempUserData.id}}">View Signature</a>						
+						<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+						<input type="hidden" name="userid" id="userid" value="{{tempUserData.id}}" />
+						<input type="file" name="signature" id="signature" accept="image/png" required>						
+                    </div>
+                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('.formSignatureData').slideUp();">Cancel</a>
+                    <a href="javascript:void(0);" class="btn btn-success" ng-hide="!tempUserData.id" ng-click="updateUserSignature()">Upload signature</a>
+                </form>
+            </div>
             <table class="table table-striped">
                 <tr>
                     <th width="5%">#</th>
@@ -61,6 +78,7 @@
                     <td>
                         <a href="javascript:void(0);" class="glyphicon glyphicon-edit" ng-click="editUser(user)"></a>
                         <a href="javascript:void(0);" class="glyphicon glyphicon-trash" ng-click="deleteUser(user)"></a>
+						<a href="javascript:void(0);" class="glyphicon glyphicon-upload" ng-click="uploadSignature(user)"></a>
                     </td>
                 </tr>
             </table>
