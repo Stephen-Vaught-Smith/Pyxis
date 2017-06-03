@@ -1,22 +1,48 @@
+<?php
+session_start();
+if(!isset($_SESSION["username"])){
+  header("Location: login.php");
+die();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Add or Delete Users</title>
-	
+
     <link rel="stylesheet" href="3rdParty/css/style.css" type="text/css"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="3rdParty/js/jquery-3.2.1.min.js" type="text/javascript"></script> 
+    <script src="3rdParty/js/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-	
+
 	<script src="app.js"></script>
     <script src="controllers/userController.js"></script>
-	
+
 </head>
 
 <body ng-app="Recognize">
+
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Pyxis</a>
+    </div>
+    <ul class="nav navbar-nav pull-right">
+      <li><a href="profileEdit.php">Edit Profile</a></li>
+      <li class="active"><a href="index.php">Users</a></li>
+      <li><a href="viewawards.php">Awards</a></li>
+      <li><a href="logout.php">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
 
 <div class="container" ng-controller="userController" ng-init="getRecords()">
     <div class="row">
@@ -43,23 +69,6 @@
                     <a href="javascript:void(0);" class="btn btn-success" ng-hide="!tempUserData.id" ng-click="updateUser()">Update User</a>
                 </form>
             </div>
-			<div class="panel-body none formSignatureData">
-                <form class="form" id="userSignatureForm" action="uploadSig.php" name="userSignatureForm" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" readonly class="form-control" name="name" ng-model="tempUserData.name"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Signature</label>  
-						<a href="signature.php?id={{tempUserData.id}}">View Signature</a>						
-						<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-						<input type="hidden" name="userid" id="userid" value="{{tempUserData.id}}" />
-						<input type="file" name="signature" id="signature" accept="image/png" required>						
-                    </div>
-                    <a href="javascript:void(0);" class="btn btn-warning" onclick="$('.formSignatureData').slideUp();">Cancel</a>
-                    <a href="javascript:void(0);" class="btn btn-success" ng-hide="!tempUserData.id" ng-click="updateUserSignature()">Upload signature</a>
-                </form>
-            </div>
             <table class="table table-striped">
                 <tr>
                     <th width="5%">#</th>
@@ -78,7 +87,6 @@
                     <td>
                         <a href="javascript:void(0);" class="glyphicon glyphicon-edit" ng-click="editUser(user)"></a>
                         <a href="javascript:void(0);" class="glyphicon glyphicon-trash" ng-click="deleteUser(user)"></a>
-						<a href="javascript:void(0);" class="glyphicon glyphicon-upload" ng-click="uploadSignature(user)"></a>
                     </td>
                 </tr>
             </table>
