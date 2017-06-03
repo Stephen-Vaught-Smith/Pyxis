@@ -7,10 +7,10 @@ die();
 else{
  $pass=$_POST["password"];
  $user=$_POST["username"];
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "pyxis";
+  $servername = "oniddb.cws.oregonstate.edu";
+  $username = "leinings-db";
+  $password = "Q0u6N9bFIA8s672N";
+  $dbname = "leinings-db";
 
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
