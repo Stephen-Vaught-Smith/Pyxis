@@ -5,10 +5,10 @@ if(!isset($_SESSION["username"])){
 die();
 }
 else{
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "pyxis";
+$servername = "oniddb.cws.oregonstate.edu";
+$username = "leinings-db";
+$password = "Q0u6N9bFIA8s672N";
+$dbname = "leinings-db";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -62,6 +62,26 @@ function update(){
   var password=$("#password").val();
   var newpass=$("#newpass").val();
   var conpass=$("#conpass").val();
+  if($("#newpass").val().length > 0) {
+
+    $.ajax({
+    type: "POST",
+    url: "customphp/profileedit.php",
+   data: "username="+username+"&password="+password,
+    success: function(response){
+         if(response==="Record updated successfully"){
+       $("#userupdated").show("slow");
+         }
+         else {
+           $("#userupdated").html(response);
+           $("#userupdated").show("slow");
+         }
+
+
+    }
+   });
+  }
+  else{
   if(newpass===conpass){
     $.ajax({
     type: "POST",
@@ -73,7 +93,7 @@ function update(){
          }
          else {
            $("#userupdated").html(response);
-     $("#userupdated").show("slow");
+           $("#userupdated").show("slow");
          }
 
 
@@ -83,6 +103,8 @@ function update(){
   else{
     $("#passmatcherror").show("slow");
   }
+}
+
 }
 </script>
 </head>
@@ -121,7 +143,7 @@ function update(){
         <div class="form-group">
           <label class="col-lg-3 control-label">Username:</label>
           <div class="col-lg-8">
-            <input disabled id="username" class="form-control" value="<?php echo $username; ?>" type="text">
+            <input id="username" class="form-control" value="<?php echo $username;?>" type="text">
           </div>
         </div>
         <div class="form-group">
@@ -151,7 +173,7 @@ function update(){
         <div class="form-group">
           <label class="col-md-3 control-label"></label>
           <div class="col-md-8">
-            <input class="btn btn-primary" value="Save Changes" type="button" onclick="();">
+            <input class="btn btn-primary" value="Save Changes" type="button" onclick="update();">
             <span></span>
             <input class="btn btn-default" value="Cancel" type="reset">
             <span></span>
