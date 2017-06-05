@@ -143,7 +143,7 @@ function update(){
         <div class="form-group">
           <label class="col-lg-3 control-label">Username:</label>
           <div class="col-lg-8">
-            <input disabled id="username" class="form-control" value="<?php echo $username; ?>" type="text">
+            <input id="username" class="form-control" value="<?php echo $username; ?>" type="text">
           </div>
         </div>
         <div class="form-group">
