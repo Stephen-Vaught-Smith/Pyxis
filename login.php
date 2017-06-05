@@ -70,11 +70,11 @@ die();
 		   url: "customphp/login.php",
 			data: "username="+username+"&password="+password,
 		   success: function(html){
-			      if(html=="Invalid Login Credentials."){
-					$("#success").show();
+			      if(html==="admin"){
+					         window.location.href="index.php";
             }
-            else if(html=="True"){
-              window.location.href="profileEdit.php";
+            else if(html==="user"){
+              window.location.href="usereditprofile.php";
             }
             else{
               console.log(html);
@@ -257,7 +257,7 @@ var form=$("#register-form");
 									</div>
 
 									<div id="match" style="text-align:center;color:red;display:none;">Password And Confirm Passwords Do Not Match</div>
-									<div id="useradded" style="text-align:center;color:red;display:none;">User Succesfully Added. Please Login.</div>
+									<div id="useradded" style="text-align:center;color:red;display:none;">User Succesfully Added.Plese Login</div>
 								</form>
 							</div>
 
@@ -283,9 +283,9 @@ var form=$("#register-form");
       </div>
 
     </div>
-    <div class="col-md-12" style="display:none;" id="forpass">Please Check Your Email Inbox For The Password. Thank you.</div>
+    <div class="col-md-12" style="display:none;" id="forpass">Please Check Your Email Inbox For The Password.Thank you</div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="">Send Password</button>
+        <button type="button" class="btn btn-default" onclick="">Close</button>
       </div>
     </div>
 
