@@ -1,22 +1,48 @@
+<?php
+session_start();
+if(!isset($_SESSION["username"])){
+  header("Location: login.php");
+die();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Add or Delete Users</title>
-	
+
     <link rel="stylesheet" href="3rdParty/css/style.css" type="text/css"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
-    <script src="3rdParty/js/jquery-3.2.1.min.js" type="text/javascript"></script> 
+    <script src="3rdParty/js/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-	
+
 	<script src="app.js"></script>
     <script src="controllers/userController.js"></script>
-	
+
 </head>
 
 <body ng-app="Recognize">
+
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Pyxis</a>
+    </div>
+    <ul class="nav navbar-nav pull-right">
+      <li><a href="profileEdit.php">Edit Profile</a></li>
+      <li class="active"><a href="index.php">Users</a></li>
+      <li><a href="viewawards.php">Awards</a></li>
+      <li><a href="logout.php">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
 
 <div class="container" ng-controller="userController" ng-init="getRecords()">
     <div class="row">
