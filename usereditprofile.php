@@ -173,7 +173,7 @@ function update(){
         <div class="form-group">
           <label class="col-md-3 control-label"></label>
           <div class="col-md-8">
-            <input class="btn btn-primary" value="Save Changes" type="button" onclick="();">
+            <input class="btn btn-primary" value="Save Changes" type="button" onclick="update();">
             <span></span>
             <input class="btn btn-default" value="Cancel" type="reset">
             <span></span>
