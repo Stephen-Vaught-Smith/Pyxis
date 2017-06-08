@@ -9,11 +9,11 @@ $errors = array();  	// array to hold validation errors
 $data = array(); 		// array to pass back data
 
 // validate the variables ======================================================
-	//if (empty($_POST['name']))
-	//	$errors['name'] = 'Name is required.';
+	if (empty($_POST['name']))
+		$errors['name'] = 'Name is required.';
 
-	//if (empty($_POST['superheroAlias']))
-	//	$errors['superheroAlias'] = 'E-mail is required.';
+	if (empty($_POST['address']))
+		$errors['address'] = 'E-mail is required.';
 
 	if (empty($_POST['content']))
 		$errors['content'] = 'Message is required.';
@@ -41,7 +41,7 @@ $data = array(); 		// array to pass back data
 		$mail->Password = "Student@OSU"; // Password
 		$mail->Subject = "Great Job! Attached is an Award For Your Awesome Contributions! ";
 		$mail->Body = $_POST['content'];
-		$mail->AddAddress("hesseljo@oregonstate.edu"); //Pass the e-mail that you setup
+		$mail->AddAddress($_POST['address']); //Pass the email address 
 
 		
 
